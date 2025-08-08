@@ -1,0 +1,3 @@
+ForgWatch_path=src
+ForgWatch_build=make -j3 run
+ForgWatch_Extension=.cpp .hpp .h
