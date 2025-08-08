@@ -4,3 +4,4 @@
 r:^build/.*\.o$
 *.log
 src/Page/*
+*.*~
