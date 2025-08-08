@@ -1,4 +1,4 @@
-# This file was generated from .regignore at 2025-08-08 17:21:02 UTC
+# This file was generated from .regignore at 2025-08-08 18:36:54 UTC
 # Any changes must be made from the .regignore file otherwise they will not persist
 
 # Static patterns:
@@ -18,7 +18,3 @@ build/Server/Server.o
 build/main
 build/main.d
 build/main.o
-src/2025-08-08-121940_1366x768_scrot.png
-src/2025-08-08-121943_1366x768_scrot.png
-src/Server/2025-08-05-152825_1366x768_scrot.png
-src/Server/2025-08-05-182434_1366x768_scrot.png

@@ -1,53 +1,61 @@
-# CodeVoid basic (CPP) Makefile
+# html++ Makefile
 
 # Tools
-ASM     = nasm
 CC      = clang++
 
 # Project Structure
 SRC     = src
 BUILD   = build
-TARGET  = $(BUILD)/main
+TARGET  = $(BUILD)/libhtml++.so
 
-# Compiler flags (switch -O0 for DEBUG=1)
+# Install locations
+PREFIX       ?= /usr/local
+INCLUDEDIR   = $(PREFIX)/include/html++
+LIBDIR       = $(PREFIX)/lib
+
+# Compiler flags
 ifeq ($(DEBUG),1)
-  CFLAGS = -Wall -Wextra -O0 -std=c++20 -MMD -MP
+  CFLAGS = -Wall -Wextra -O0 -fPIC -std=c++20 -MMD -MP
 else
-  CFLAGS = -Wall -Wextra -O2 -std=c++20 -MMD -MP
+  CFLAGS = -Wall -Wextra -O2 -fPIC -std=c++20 -MMD -MP
 endif
 
-LDFLAGS = -pthread -lm
+LDFLAGS = -shared -pthread -lm
 
-# Find all .cpp files
+# Source & object files
 CXX_SOURCES := $(shell find $(SRC) -name '*.cpp')
-# Convert .cpp files to .o files in build folder
 CXX_OBJS    := $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(CXX_SOURCES))
-# Corresponding dependency files (.d)
 CXX_DEPS    := $(CXX_OBJS:.o=.d)
 
-# Find all header files (for info only)
-HEADERS := $(shell find $(SRC) -name '*.hpp' -o -name '*.h')
+# Public headers
+HEADERS := $(shell find $(SRC) -name '*.hpp')
 
-# Default target
+# Default target: build the shared library
 all: $(TARGET)
 
-# Link the executable
+# Link the shared library
 $(TARGET): $(CXX_OBJS)
 	@mkdir -p $(dir $@)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-# Compile each .cpp to .o, generate dependency info
+# Compile .cpp into .o
 $(BUILD)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Include the dependency files (if exist)
--include $(CXX_DEPS)
+# Install library and headers
+install: $(TARGET)
+	@echo "Installing libhtml++.so to $(DESTDIR)$(LIBDIR)"
+	install -d $(DESTDIR)$(LIBDIR)
+	install -m 0755 $(TARGET) $(DESTDIR)$(LIBDIR)/libhtml++.so
 
-# Run the built program
-run: $(TARGET)
-	./$(TARGET)
+	@echo "Installing headers to $(DESTDIR)$(INCLUDEDIR)..."
+	install -d $(DESTDIR)$(INCLUDEDIR)
+	find $(SRC) -name '*.hpp' -exec install -Dm 0644 {} $(DESTDIR)$(INCLUDEDIR)/{} \;
 
 # Clean build artifacts
 clean:
 	rm -rf $(BUILD)
+
+# Include auto-generated dependency files
+-include $(CXX_DEPS)
