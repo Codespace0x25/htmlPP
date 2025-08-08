@@ -1,7 +1,12 @@
 # Lines prefixed with r: will be interpreted as regex
 # Other lines will be treated as gitignore-style patterns
-# Example:
+
 r:^build/.*\.o$
+r:^build/*
+r:^src/.*\.png$
+
+
+# normal gitignore
 *.log
 src/Page/*
 *.*~
