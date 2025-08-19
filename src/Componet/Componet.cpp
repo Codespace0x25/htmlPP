@@ -37,7 +37,12 @@ std::string Component::render() const {
   html << "<" << tag;
 
   for (const auto &[key, val] : attrs) {
-    html << " " << key << "=\"" << val << "\"";
+    if(!val.empty()){
+      html << " " << key << "=\"" << val << "\"";
+    }else
+    {
+      html << " " << key << " ";
+    }
   }
 
   html << ">";

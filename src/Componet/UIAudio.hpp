@@ -1,7 +1,6 @@
 // Componet/UIAudio.hpp
 #pragma once
 #include "Componet.hpp"
-#include "TextComponet.hpp"
 
 class UIAudio : public Comment::Component {
 public:
