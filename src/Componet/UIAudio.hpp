@@ -5,12 +5,12 @@
 
 class UIAudio : public Comment::Component {
 public:
-    UIAudio(const std::string& URL)
-        : Component("audio") {
+  UIAudio(const std::string& URL, const bool controls = true)
+    : Component("audio"),controls(controls) {
         setAttr("class", "ui-audio ui-audio-" + URL);
 	if(controls){
 	  setAttr("controls", "");
 	}
     }
-  bool controls = true;
+  bool controls;
 };
