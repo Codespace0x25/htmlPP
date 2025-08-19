@@ -1,16 +1,7 @@
-# This file was generated from .regignore at 2025-08-08 18:50:07 UTC
+# This file was generated from .regignore at 2025-08-19 17:02:49 UTC
 # Any changes must be made from the .regignore file otherwise they will not persist
 
 # Static patterns:
 *.*~
 *.log
 src/Page/*
-
-# Files matched by regex patterns:
-build/Componet/Componet.d
-build/Componet/Componet.o
-build/Componet/Page.d
-build/Componet/Page.o
-build/Server/Server.d
-build/Server/Server.o
-build/libhtml++.so

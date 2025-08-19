@@ -297,7 +297,6 @@ std::string Page::render() const {
   html << "<!DOCTYPE html><html><head><meta charset='UTF-8'>"
        << "<title>" << title << "</title>";
 
-  // ✨ Add favicon using inline emoji SVG trick
   html << "<link rel='icon' href='data:image/svg+xml,<svg "
           "xmlns=%22http://www.w3.org/2000/svg%22>"
        << "<text y=%22.9em%22 font-size=%2216%22>" << favicon

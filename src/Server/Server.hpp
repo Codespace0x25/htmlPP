@@ -8,18 +8,19 @@ namespace Server {
   public:
     Server(const std::string& ip, int port);
 
-    // maps a URL path ("/home", "/about") to raw HTML to serve
-    void addPath(const std::string& path, const std::string& html);
+    void addPath(const std::string& path, const std::string& html,const std::string methon = "GET");
 
-    // starts the server — likely blocking call
+    void setStaticDir(const std::string& dir);
+
     void StartServe(const std::string& siteName = "");
 
     ~Server();
 
   private:
-    std::unordered_map<std::string, std::string> map; // path -> HTML
+    std::unordered_map<std::string, std::unordered_map<std::string,std::string>> map;
     std::string ip;
     int port;
+    std::string staticDir;
   };
 
 }
