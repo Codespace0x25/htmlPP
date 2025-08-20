@@ -1,32 +1,46 @@
 #pragma once
+#include <functional>
 #include <string>
 #include <unordered_map>
-#include <functional>
 
 namespace Server {
 
-  class Server {
-  public:
-    Server(const std::string& ip, int port);
+struct Request {
+  std::string method;
+  std::string path;
+  std::unordered_map<std::string, std::string> query;
+  std::string body;
+};
 
-    // static HTML routes
-    void addPath(const std::string& path, const std::string& html, const std::string method = "GET");
+class Server {
+public:
+  Server(const std::string &ip, int port);
+  void setStaticDir(const std::string &dir);
 
-    // dynamic function routes
-    void addPath(const std::string& path, std::function<std::string(const std::string&)> func, const std::string method = "GET");
+  void addPath(const std::string &path,
+               std::function<std::string(const Request &)> func,
+               const std::string &method = "GET");
 
-    void setStaticDir(const std::string& dir);
+  void addPath(const std::string &path, const std::string &response,
+               const std::string &method = "GET");
 
-    void StartServe(const std::string& siteName = "");
+  void StartServe(const std::string &name);
 
-    ~Server();
+private:
+  std::string ip;
+  int port;
+  std::string staticDir;
 
-  private:
-    std::unordered_map<std::string, std::unordered_map<std::string,std::string>> staticMap;
-    std::unordered_map<std::string, std::unordered_map<std::string,std::function<std::string(const std::string&)>>> funcMap;
-    std::string ip;
-    int port;
-    std::string staticDir;
-  };
+  std::unordered_map<std::string,
+                     std::unordered_map<std::string, std::function<std::string(
+                                                         const Request &)>>>
+      funcMap;
 
-}
+  std::unordered_map<std::string, std::unordered_map<std::string, std::string>>
+      stringMap;
+
+  void handle_client(int client_socket);
+  std::string get_mime_type(const std::string &path);
+};
+
+} // namespace Server
