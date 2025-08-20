@@ -286,6 +286,56 @@ std::string Page::defaultCSS() {
     .ui-tab-content.hidden {
        display: none;
     }
+    .ui-video,
+    .ui-audio {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 1rem 0;
+        border-radius: 6px;
+        background-color: #1c1c2c; /* match card/comment bg */
+        box-shadow: 0 0 10px #00000088;
+    }
+    
+    .ui-video::-webkit-media-controls-panel,
+    .ui-audio::-webkit-media-controls-panel {
+        background-color: #2a2a3b; /* dark control bar */
+        border-radius: 6px;
+    }
+    
+    .ui-video:focus,
+    .ui-audio:focus {
+        outline: 2px solid #8758ff; /* accent purple */
+    }
+    
+    .ui-video::-moz-focus-inner,
+    .ui-audio::-moz-focus-inner {
+        border: 0;
+    }
+    
+    .ui-video:hover,
+    .ui-audio:hover {
+        box-shadow: 0 0 12px #a078ff55;
+    }
+    .ui-img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+        border-radius: 6px;
+        background-color: #1c1c2c; /* matches card background */
+        box-shadow: 0 0 10px #00000066;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    
+    .ui-img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px #a078ff55;
+    }
+    
+    .ui-img:focus {
+        outline: 2px solid #8758ff; /* accessibility */
+    }
 
 
   )";

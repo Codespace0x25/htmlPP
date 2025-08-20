@@ -21,3 +21,6 @@
 #include "UITabs.hpp"
 #include "UITextArea.hpp"
 #include "UITextInput.hpp"
+#include "UIVideo.hpp"
+#include "UIAudio.hpp"
+#include "UIImage.hpp"

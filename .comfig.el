@@ -8,7 +8,7 @@
   (interactive)
   (if-let ((project-root (projectile-project-root)))
       (let ((default-directory project-root))
-        (compile "make -j3 run"))
+        (compile "make -j3 "))
     (message "Not in a Projectile project.")))
 
 ;; Bind to C-c m t
