@@ -70,7 +70,6 @@ int main() {
 This generates a fully styled HTML page with interactive components.
 
 ---
-
 ## Core Components
 
 * **Page & Component System**
@@ -107,7 +106,3 @@ public:
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues, feature requests, or pull requests.
-
----
-
-If you want, I can also write that **demo page example with nearly all the components** so people can see everything in action. It’d make the README look way more “alive.” Do you want me to do that next?
