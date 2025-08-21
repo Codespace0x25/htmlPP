@@ -1,7 +1,3 @@
-Gotcha! We can just remove the license section entirely and leave it as “free to use” in the description without specifying a formal license. Here's the README adjusted:
-
----
-
 # htmlpp
 
 `htmlpp` is a lightweight C++ framework for building HTML pages and components with ease. It provides a **React-like component system** in pure C++, allowing you to construct dynamic pages, embed JavaScript, style with CSS, and organize content using reusable components.
